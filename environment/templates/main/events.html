@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{%load bootstrap4%}
+{%load static%}
+{%block content%}
+<div class="container">
+    <center><img src="../../static/image/26817694.jpg" alt="Image" width="20%"></center>
+    <a href="{%url 'index'%}"><img src="https://img.icons8.com/flat-round/64/000000/circled-left-2--v1.png" width='20px' />Back</a>
+
+    <h2 class="text-center title">Here are some cases from diffrent locations</h2>
+    <div class="row">
+
+        {%for clean in clean%}
+        <div class="card" style="width: 48%; margin:1%;">
+            <h3 class="text-center">Cleanup at {{clean.location}} organized by {{clean.organizer}}
+                {{clean.organizer_contact}} on {{clean.date}}</h3>
+            <p class="text-center"><i><a href="{%url 'cleanup_reviews' clean.id%}">Your reaction on this?</a></i></p>
+
+            <div class="card-footer">
+                <h4 class="card-text text-center" style="color:green;">Paybill number <em>{{clean.paybill}}</em>
+                    sh.{{clean.amount}}</h4>
+            </div>
+        </div>
+        {%endfor%}
+
+
+    </div>
+
+</div>
+{%endblock%}

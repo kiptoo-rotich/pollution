@@ -1,0 +1,38 @@
+{%extends 'base.html'%}
+{%load bootstrap4%}
+{%load static%}
+{%block content%}
+<div class="container">
+    <div class="row" style="margin-top:2%;">
+        <a href="{%url 'events'%}"><img src="https://img.icons8.com/flat-round/64/000000/circled-left-2--v1.png" width='20px' />Back</a>
+
+        <div class="col-md-7 col-lg-7">
+            <h3 class="text-center">Cleanup at {{clean.location}} organized by {{clean.organizer}}
+                {{clean.organizer_contact}} on {{clean.date}}</h3>
+        </div>
+        <div class="col-md-5 col-lg-5">
+            <form class="form" action="" method="post" novalidate>
+                {% csrf_token %}
+                {% bootstrap_form form%}
+                <div class="row pl-5">
+                    <button type="submit" class="btn btn-md btn-outline-primary"
+                        style="margin-bottom:5%">Submit</button>
+                </div>
+            </form>
+            <div>
+                <h3 class="text-center">This project has {{responses.count}} reactions so far.</h3>
+                {%for responses in responses%}
+                <div style="margin:10px">
+                    <h3>{{responses.user}}</h3>
+                    <p>{{responses.reaction}}</p>
+                    <i>Posted {{responses.date|timesince}} ago.</i>
+                </div>
+                <hr>
+                {%endfor%}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{%endblock%}

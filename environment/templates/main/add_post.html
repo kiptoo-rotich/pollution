@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{%load bootstrap4%}
+{%load static%}
+{%block content%}
+<div class="container">
+    <a href="{%url 'index'%}"><img src="https://img.icons8.com/flat-round/64/000000/circled-left-2--v1.png"
+            width='20px' />Back</a>
+    <h3 class="text-center" style="color:green; margin-top:5%;" >REPORT NEW CASE</h3>
+
+    <div class="row">
+        <div class="col-xm-2 col-sm-2 col-md-2 col-lg-2"></div>
+        <div class="col-xm-10 col-sm-10 col-md-10 col-lg-10">
+            <form method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-md" style="width:100%; font-weight:600;"
+                        value="Report new case">
+                </div>
+                <input type="hidden" name="next" value="{{next}}">
+            </form>
+        </div>
+        <div class="col-xm-2 col-sm-2 col-md-2 col-lg-2"></div>
+
+    </div>
+
+</div>
+
+{%endblock%}

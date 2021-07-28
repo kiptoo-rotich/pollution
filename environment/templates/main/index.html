@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="container">
+    <center><img src="../../static/image/save-environment.png" alt="Image" width="20%"></center>
+    <h2 class="text-center title">Here are some cases from diffrent locations</h2>
+    <div class="row">
+        {%for case in cases%}
+        <div class="card" style="width: 48%; margin:1%;">
+            <h3 class="text-center">{{case.pollution_type}} pollution at {{case.location}}</h3>
+            <a href=""><img class="card-img-top" src="{{case.photo.url}}" alt="Card image cap"></a>
+            <div class="card-body">
+                <p class="card-text">{{case.message|truncatewords:15}}<a href="{%url 'responses' case.id%}">more</a></p>
+            </div>
+            <div class="card-footer">
+                <p class="card-text case">{{case.estimate}}</p>
+            </div>
+            <p class="text-center"><i><a href="{%url 'responses' case.id%}">Your reaction on this?</a></i></p>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+{%endblock%}
